@@ -13,7 +13,7 @@ import (
 //go:embed input01.txt
 var input string
 
-func Parse(input string) ([]int, []int) {
+func ParsePart1(input string) ([]int, []int) {
 	var left, right []int
 	var lines = strings.Split(input, "\n")
 	for _, line := range lines {
@@ -24,11 +24,10 @@ func Parse(input string) ([]int, []int) {
 		right = append(right, r)
 	}
 	return left, right
-
 }
 
 func Part1(input string) int {
-	left, right := Parse(input)
+	left, right := ParsePart1(input)
 	slices.Sort(right)
 	slices.Sort(left)
 	sum := 0
@@ -39,14 +38,26 @@ func Part1(input string) int {
 	return sum
 }
 
+func ParsePart2(input string) ([]int, map[int]int) {
+	var left []int
+	right := make(map[int]int)
+	var lines = strings.Split(input, "\n")
+	for _, line := range lines {
+		var before, after, _ = strings.Cut(line, " ")
+		var l, _ = strconv.Atoi(before)
+		var r, _ = strconv.Atoi(strings.Trim(after, " "))
+		left = append(left, l)
+		right[r] += 1
+	}
+	return left, right
+}
+
 func Part2(input string) int {
-	left, right := Parse(input)
-	slices.Sort(right)
-	slices.Sort(left)
+	left, right := ParsePart2(input)
 	sum := 0
-	for i := range right {
-		partialSum := math.Abs(float64(right[i] - left[i]))
-		sum += int(partialSum)
+	for _, val := range left {
+		partialSum := val * right[val]
+		sum += partialSum
 	}
 	return sum
 }
