@@ -74,7 +74,23 @@ func Part1(input string) int {
 }
 
 func Part2(input string) int {
-	return 0
+	list := Parse(input)
+	sum := 0
+
+	for _, game := range list {
+		maxRed := 0
+		maxGreen := 0
+		maxBlue := 0
+
+		for _, set := range game {
+			maxRed = max(set[0], maxRed)
+			maxGreen = max(set[1], maxGreen)
+			maxBlue = max(set[2], maxBlue)
+		}
+
+		sum += maxRed * maxGreen * maxBlue
+	}
+	return sum
 }
 
 func main() {
