@@ -11,22 +11,34 @@ import (
 //go:embed input02.txt
 var input string
 
-func ParsePart1(input string) [][]map[string]int {
-	var games = strings.Split(input, "\n")
-	var list [][]map[string]int
+func Parse(input string) [][][3]int {
+	trimmedInput := strings.TrimSuffix(input, "\n")
+	games := strings.Split(trimmedInput, "\n")
+	var list [][][3]int
+
 	for _, game := range games {
-		var gameList []map[string]int
-		var _, after, _ = strings.Cut(game, ":")
-		var sets = strings.Split(after, ";")
+		var gameList [][3]int
+		_, after, _ := strings.Cut(game, ":")
+		sets := strings.Split(after, ";")
+
 		for _, set := range sets {
-			var setList map[string]int
-			setList = make(map[string]int)
+			var setList [3]int
 			var colors = strings.Split(set, ",")
+
 			for _, color := range colors {
-				var l, r, _ = strings.Cut(strings.Trim(color, " "), " ")
-				q, _ := strconv.Atoi(strings.Trim(l, " "))
-				c := strings.Trim(r, " ")
-				setList[c] = q
+				fields := strings.Fields(color)
+
+				q, _ := strconv.Atoi(fields[0])
+				c := fields[1]
+
+				switch c {
+				case "red":
+					setList[0] = q
+				case "green":
+					setList[1] = q
+				case "blue":
+					setList[2] = q
+				}
 			}
 			gameList = append(gameList, setList)
 		}
@@ -36,14 +48,26 @@ func ParsePart1(input string) [][]map[string]int {
 }
 
 func Part1(input string) int {
-	list := ParsePart1(input)
+	list := Parse(input)
 	sum := 0
+
+	maxRed := 12
+	maxGreen := 13
+	maxBlue := 14
+
 	for i, game := range list {
+		gameID := i + 1
+		possible := true
+
 		for _, set := range game {
-			if 12 < set["red"] || 13 < set["green"] || 14 < set["blue"] {
-				sum += i + 1
+			if set[0] > maxRed || set[1] > maxGreen || set[2] > maxBlue {
+				possible = false
 				break
 			}
+		}
+
+		if possible {
+			sum += gameID
 		}
 	}
 	return sum
@@ -54,7 +78,7 @@ func Part2(input string) int {
 }
 
 func main() {
-	fmt.Println("2022 day 02 solution")
+	fmt.Println("2023 day 02 solution")
 
 	start := time.Now()
 	fmt.Println("* Part1:")
