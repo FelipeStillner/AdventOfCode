@@ -63,7 +63,7 @@ func Part2(input string) int {
 }
 
 func main() {
-	fmt.Println("2025 day 01 solution")
+	fmt.Println("2024 day 01 solution")
 
 	start := time.Now()
 	fmt.Println("* Part1:")
