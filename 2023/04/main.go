@@ -15,7 +15,7 @@ type Card struct {
 	quantity        int
 }
 
-//go:embed input04.txt
+//go:embed input.txt
 var input string
 
 func Parse(input string) []Card {

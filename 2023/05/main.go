@@ -15,7 +15,7 @@ type Conversion struct {
 	len                int
 }
 
-//go:embed input05.txt
+//go:embed input.txt
 var input string
 
 func Parse(input string) ([]int, [][]Conversion) {

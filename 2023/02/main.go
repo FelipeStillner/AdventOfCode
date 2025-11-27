@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//go:embed input02.txt
+//go:embed input.txt
 var input string
 
 func Parse(input string) [][][3]int {

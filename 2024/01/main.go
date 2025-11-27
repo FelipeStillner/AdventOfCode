@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-//go:embed input01.txt
+//go:embed input.txt
 var input string
 
 func ParsePart1(input string) ([]int, []int) {

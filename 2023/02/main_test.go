@@ -5,12 +5,12 @@ import (
 	"testing"
 )
 
-//go:embed input01_test.txt
+//go:embed input_test.txt
 var inputTest string
 
 func TestPart1(t *testing.T) {
 	result := Part1(inputTest)
-	expected := 11
+	expected := 8
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
@@ -18,7 +18,7 @@ func TestPart1(t *testing.T) {
 
 func TestPart2(t *testing.T) {
 	result := Part2(inputTest)
-	expected := 31
+	expected := 2286
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}

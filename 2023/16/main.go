@@ -22,7 +22,7 @@ const (
 	BACK_MIRROR
 )
 
-//go:embed input16.txt
+//go:embed input.txt
 var input string
 
 func TranslateLayout(c rune) int {

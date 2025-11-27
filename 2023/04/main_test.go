@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-//go:embed input04_test.txt
+//go:embed input_test.txt
 var inputTest string
 
 func TestPart1(t *testing.T) {
