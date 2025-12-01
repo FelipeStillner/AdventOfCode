@@ -10,7 +10,7 @@ var inputTest string
 
 func TestPart1(t *testing.T) {
 	result := Part1(inputTest)
-	expected := 0
+	expected := 3
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
@@ -18,7 +18,7 @@ func TestPart1(t *testing.T) {
 
 func TestPart2(t *testing.T) {
 	result := Part2(inputTest)
-	expected := 0
+	expected := 6
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
