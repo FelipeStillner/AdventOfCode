@@ -28,9 +28,9 @@ func Parse(input string) []Point {
 	var points []Point
 
 	input = strings.TrimSpace(input)
-	lines := strings.Split(input, "\n")
+	lines := strings.SplitSeq(input, "\n")
 
-	for _, line := range lines {
+	for line := range lines {
 		coords := strings.Split(line, ",")
 		x, _ := strconv.Atoi(coords[0])
 		y, _ := strconv.Atoi(coords[1])
@@ -44,8 +44,7 @@ func Parse(input string) []Point {
 func getLines(points []Point) []Line {
 	var lines []Line
 
-	for i1 := 0; i1 < len(points); i1++ {
-		p1 := points[i1]
+	for i1, p1 := range points {
 		for i2 := i1 + 1; i2 < len(points); i2++ {
 			p2 := points[i2]
 			dx := math.Pow(float64(p1.X-p2.X), 2)
@@ -105,9 +104,7 @@ func Part2(input string) int {
 		unionFind.Union(line.Start, line.End)
 		if unionFind.Count == 1 {
 			x1 := points[line.Start].X
-			println("Start: ", line.Start, ", X:", x1)
 			x2 := points[line.End].X
-			println("End: ", line.End, ", X:", x2)
 			res = x1 * x2
 			break
 		}
